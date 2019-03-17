@@ -141,6 +141,6 @@ After these two steps, you are now ready to submit a text-minining query to the 
 			./spark-interactive-textmining.sh
 		
 		
-All the required information for submitting different Text Mining queries can be founda [at](https://github.com/alan-turing-institute/defoe). 			
+All the required information for submitting different Text Mining queries can be found at this [link](https://github.com/alan-turing-institute/defoe/tree/master/docs). 			
 
 
