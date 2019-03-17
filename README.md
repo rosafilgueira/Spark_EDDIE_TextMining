@@ -19,9 +19,9 @@ In your $HOME directory you need to have the following:
 IDEA:
 	
 	cp -r spark_conf in your $HOME directory
-	cp spark_scripts/* in your $HOME directory
 	cp -r bash_scripts in your $HOME directory
 	cp *.sh in your $HOME directory
+	cp *.job in your $HOME directory
 
 
 # Change the Spark configurable files
