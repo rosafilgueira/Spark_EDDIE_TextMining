@@ -1,11 +1,14 @@
 # Spark_on_HPC_cluster
 This repository describes all the steps necesaries to create a **multinode Spark standalone cluster (2.4.0)** within a PBS-job (we are going to give you two options). We have tested those scripts using EDDIE HPC cluster, hosted at Universtiy of Edinburgh.
 
-# Download Spark
+# Installation Steps
+
+### Download Spark
+
  	wget http://apache.mirrors.nublue.co.uk/spark/spark-2.4.0/spark-2.4.0-bin-hadoop2.7.tgz
 	tar xvf spark-2.4.0-bin-hadoop2.7
 
-# Copy the contain of this repository in your $HOME directory.
+### Copy the contain of this repository in your $HOME directory
 
 In your $HOME directory you need to have the following:
 * spark-2.4.0-bin-hadoop2.7 directory
@@ -24,7 +27,7 @@ IDEA:
 	cp *.job in your $HOME directory
 
 
-# Change the Spark configurable files
+### Change the Spark configurable files
 	
 	cp spark_conf/* spark-2.4.0-bin-hadoop2.7/conf/.
 	
@@ -35,7 +38,11 @@ A couple of changes will be needed inside the *spark-default.conf* script:
  You might also want to configure more parameters inside *spark-defaults.conf* file (e.g. driver memory size of log directory).  
   
 # Start a Spark cluster within a PBS job
-We have two PBS jobs to provision a Spark Cluster on-demand and for a specific period (e.g. 1 hour) of time. One PBS job (Option 1) sets up the Spark Cluster and the driver to submit a specific Spark application/Query and then it continues running for one hour, so more Spark application can be submitted later. And the other one (Option 2), just sets up the Spark Cluster (Master and Workers) and it doesnt submit any queries. 
+We have two PBS jobs to provision a Spark Standalone Cluster (Figure 1) on-demand and for a specific period (e.g. 1 hour) of time. One PBS job (**Option 1**) sets up the Spark Cluster and the driver to submit a specific Spark application/Query and then it continues running for one hour, so more Spark application can be submitted later. And the other one (**Option 2**), just sets up the Spark Cluster (Master and Workers) and it doesnt submit any queries. 
+
+
+
+
 
 ## Spark Cluster and Driver (Option 1) 
 
@@ -54,7 +61,7 @@ The following PBS job starts a Spark master and workers.
 For submitting later (once the Spark Cluster is running) Spark Applications/Queries to the Spark Cluster we need to do it via: a) another PBS-job (e.g. *spark-driver-textmining.job*, *spark-driver-Pi.job*) ; b) interactive session ( e.g. *spark-interactive-textmining.sh*, *spark-interactive-Pi.sh*) 		
 
 
-## Generic comments 
+## Generic comments for both options
 
 You can modify both PBS-jobs as you wish for running more time (now it is configured to 1 hour) and for reserving more or less nodes for your spark cluster. In the current scipts, we have used 3 nodes: one node for running the master, and:
 
@@ -63,7 +70,7 @@ You can modify both PBS-jobs as you wish for running more time (now it is config
 * in the case of the *sparkcluster* job, 2 nodes for running the workers.  
 
 
-## Master, Workers and Driver nodes. 
+## Spark Master, Workers and Driver nodes
 
 Once you have running your Spark Cluster, you can check which nodes have been asigned as Master, Worker(s) and Driver using the *master.log*, *worker.log*, and *driver.log* stored under the bash_scripts directory. 
 
