@@ -115,7 +115,7 @@ Note: Addtional information can be found at this [link](https://spark.apache.org
 
 ### Launching a Spark Text Mining query
 
-The [defoe](https://github.com/alan-turing-institute/defoe) GitHub repository contains code to analyse historical books and newspapers datasets using Apache Spark. Thefore, the first step is to clone it into your $HOME
+[Defoe](https://github.com/alan-turing-institute/defoe) GitHub repository contains code to analyse historical books and newspapers datasets using Apache Spark. Thefore, the first step is to clone it into your $HOME
 
 	git clone https://github.com/alan-turing-institute/defoe.git
 
@@ -143,7 +143,7 @@ After these two steps, you are now ready to launch a text-minining query to the 
 		
 If you want to run a different text mining query, you just need to modify any of the previous scripts, indicating the path of the query to use, and the argurments (if they are needed). 
 
-All the required information for submitting *defoe text mining queries* can be found at this [link](https://github.com/alan-turing-institute/defoe/tree/master/docs). 			
+All the required information for submitting *Defoe text mining queries* can be found at this [link](https://github.com/alan-turing-institute/defoe/tree/master/docs). 			
 
 # Monitoring the Spark Cluster and Applications/queries via UIs
 
