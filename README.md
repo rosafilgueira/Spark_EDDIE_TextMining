@@ -114,20 +114,22 @@ Via an interactive session - Important ( you need to request a session with at l
 Note: Addtional information can be found at this [link](https://spark.apache.org/docs/latest/submitting-applications.html)
 
 ### Submitting a TextMining query to the Spark-Cluster. This will requiere the following steps:
-	
-- Clone our TextMinging GitHub repository, called [defoe](https://github.com/alan-turing-institute/defoe)
 
-- Get the necesary data ( e.g. /sg/datastore/lib/groups/lac-store/blpaper/xmls) in your scratch directory ( e.g. /exports/eddie/scratch/< UUN >/blpaper) 
+The [defoe](https://github.com/alan-turing-institute/defoe) GitHub repository contains code to analyse historical books and newspapers datasets using Apache Spark. Thefore, the first step is to clone it into your $HOME
 
-- Zip up the defoe source code (Spark needs this to run the query). More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/run-queries.md).
+	git clone https://github.com/alan-turing-institute/defoe.git
+
+Once cloned, the second step is to get the necesary data ( e.g. /sg/datastore/lib/groups/lac-store/blpaper/xmls) in your scratch directory ( e.g. /exports/eddie/scratch/< UUN >/blpaper) inside EDDIE. 
+
+Before submitting a query you will need to Zip up the defoe source code (Spark needs this to run the query). More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/run-queries.md).
 
 		zip -r defoe.zip defoe
 
-- Spark needs to know the data which you want to run a query over. You need to create a plain-text file (e.g. data.txt) with a list of the paths to the data files to query. More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/specify-data-to-query.md)
+And later, you will to indicate which data (newspapers) which you want to run a query over. For doing so, you need to create a plain-text file (e.g. data.txt) with a list of the paths to the data files to query. More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/specify-data-to-query.md).
 
 	 	find /exports/eddie/scratch/< UUN >/blpaper -name "*.xml" > data.txt
 	 
-- And now you can submit a text-minining query, for example [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md) or [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md), either :
+After these two steps, you are now ready to submit a text-minining query to the Spark Cluster. For example, you could run [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md)  or [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md) queries. We have prepared two scripts for doing that:
 
   - Via a PBS-job, which acts as the dirver. This PBS job lanunches the **keyword_by_year** Spark query to the Spark Cluster, using the specified xmls newspapers inside the *data.txt*:
 		
@@ -139,6 +141,6 @@ Note: Addtional information can be found at this [link](https://spark.apache.org
 			./spark-interactive-textmining.sh
 		
 		
-			
+All the required information for submitting different Text Mining queries can be founda [at](https://github.com/alan-turing-institute/defoe). 			
 
 
