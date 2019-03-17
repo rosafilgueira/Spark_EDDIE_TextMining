@@ -44,7 +44,7 @@ The first PBS job (**Option 1**) sets up the Spark Cluster (Master and Workers) 
 
 ## Spark Cluster and Driver (Option 1) 
 
-The following PBS job starts a Spark master, Spark workers, and a driver. The driver submits a Spark Application/query to the Spark cluster once is running.
+The following PBS job starts a Spark master, Spark workers, and a driver. The driver submits automatically a Spark Application/query to the Spark cluster once is running.
 
   		qsub sparkcluster_and_driver.job
 
