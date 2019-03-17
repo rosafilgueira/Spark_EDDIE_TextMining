@@ -43,10 +43,10 @@ Note: In this option we have already configured the driver to submit a Spark tex
 
                 qsub sparkcluster.job
 
-You can modify it as you wish for reserving more or less nodes for your spark cluster. In the current scipt, we have used 3 nodes: one node for running the master, and:
+You can modify both PBS-job as you wish for reserving more or less nodes for your spark cluster. In the current scipts, we have used 3 nodes: one node for running the master, and:
 
-* sparkcluster_and_driver --> 1 node for running the worker and 1 node for running the driver.
-* sparkcluster --> 2 nodes for running the workers.  
+* in the case of the *sparkcluster_and_driver* job, 1 node for running the worker and 1 node for running the driver.
+* in the case of the *sparkcluster* job, 2 nodes for running the workers.  
 
 
 # Submit spark applications to the Spark cluster
