@@ -143,4 +143,27 @@ After these two steps, you are now ready to submit a text-minining query to the 
 		
 All the required information for submitting different Text Mining queries can be found at this [link](https://github.com/alan-turing-institute/defoe/tree/master/docs). 			
 
+# Monitoring the Spark Cluster and Applications/queries via UIs
+
+Spark offers different UIs to monitor the Spark Master, Workers and Driver (running an Spark Application/query). The only thing is needed is to create the proper bridges in your cluster. For doing that, you will need to check the URLS of the master ( e.g. opening *master.log* ), workers (e.g. opening *worker.log*), and driver (e.g. opening *driver.log* or checking in which node is running your spark-driver-textmining.job). 
+
+Once you have these 3 nodes, you just need to:
+
+- Spark Cluster UI – port 8080 – bridge: 
+
+	ssh UUN@eddie3.ecdf.ed.ac.uk -L8080:MASTER-URL:8080
+	
+	![Spark Master UI]*https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkClusterUI.png)
+	
+- Spark Worker UI – port 8081 – bridge: 
+
+	ssh UUN@eddie3.ecdf.ed.ac.uk -L8081:WORKER-URL:8081
+	
+	![Spark Worker UI](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkWorkerUI.png)
+
+- Application (Driver) UI – port 4040 – bridge:
+
+	ssh UUN@eddie3.ecdf.ed.ac.uk -L4040:DRIVER-URL:4040
+	
+	![Spark Driver UI](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/ApplicationUI-1.png)
 
