@@ -11,8 +11,8 @@ In your $HOME directory you need to have the following:
 * spark-2.4.0-bin-hadoop2.7 directory
 * bash_scripts
 * spark_conf
-* PBS-scripts for configuring the sparkcluster: sparkcluster_and_driver.job, sparkcluster.job
-* PBS-scripts for submmitng spark applications/queries: spark-driver-Pi.job, spark-driver-textming.job
+* PBS-jobs for configuring the sparkcluster: sparkcluster_and_driver.job, sparkcluster.job
+* PBS-jobs for submmitng spark applications/queries: spark-driver-Pi.job, spark-driver-textming.job
 * scripts for running spark applications: spark-interactive-textming.sh, spark-interactive-Pi.sh, spark-Pi.sh, spark-textming.sh
 * script for stopping spark cluster (no needed): spark_stop.sh
 
@@ -55,7 +55,7 @@ Once you have the spark cluster running ( your PBS job has been accepted and you
 
 1) Submitting Spark-PI to Spark-Cluster from the login node: 
 	1.1) Via a PBS-job which will act as the driver:
-		qsub spark-driver-PI.sh
+		qsub spark-driver-PI.job
 	1.2 ) Via an interactive session - Important ( you need to request a session with at least 8GB of memory):
 		 qlogin -l h_vmem=8G
 		 ./spark-interactive-Pi.sh
