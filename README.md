@@ -28,11 +28,11 @@ IDEA:
 	
 	cp spark_conf/* spark-2.4.0-bin-hadoop2.7/conf/.
 	
-A couple of changes will be needed inside the spark-default.conf script:
+A couple of changes will be needed inside the *spark-default.conf* script:
 -  Create a tmp directory ( e.g. /exports/eddie/scratch/< UUN >/tmp) to store temporal spark files. Modify the *spark.local.dir* flag to point out this path.
 -  Create a events directory (.e.g /home/eddie/scratch/< UUN >/events) to store the Spark events. Modify the *spark.eventLog.dir* flat to point tis path. 
 
- You might also want to configure more parameters inside spark-defaults.conf file (e.g. driver memory size of log directory).  
+ You might also want to configure more parameters inside *spark-defaults.conf* file (e.g. driver memory size of log directory).  
   
 # Start a Spark cluster within a PBS job
 We have two PBS-jobs to provision on-demand and for a specific period (1 hour) of time the desired spark cluster. 
@@ -41,9 +41,9 @@ We have two PBS-jobs to provision on-demand and for a specific period (1 hour) o
 
   		qsub sparkcluster_and_driver.job
 
-Note: In this option we have already configured the driver to submit a simple Spark Application (calculation of Pi) tha comes with the Spark source code using  the **spark-Pi.sh** script. If you want to change a Spark Text Mining query (e.g. spark-textminingh.sh) or submit another application, you just need to modify/replace this script. 
+Note: In this option we have already configured the driver to submit a simple Spark Application (calculation of Pi) tha comes with the Spark source code using  the *spark-Pi.sh* script. If you want to change a Spark Text Mining query (e.g. *spark-textminingh.sh*) or submit another application, you just need to modify/replace this script. 
 
-* **Option 2**:This PBS-job starts the master and workers. For submitting Spark Applications/Queries to the Spark Cluster we need to do it via: a) another PBS-job (e.g. spark-driver-textming.job) ; b) interactive session ( e.g. spark-interactive-textming.sh) 
+* **Option 2**:This PBS-job starts the master and workers. For submitting Spark Applications/Queries to the Spark Cluster we need to do it via: a) another PBS-job (e.g. *spark-driver-textminig.job*) ; b) interactive session ( e.g. *spark-interactive-textminig.sh*) 
 
                 qsub sparkcluster.job
 
