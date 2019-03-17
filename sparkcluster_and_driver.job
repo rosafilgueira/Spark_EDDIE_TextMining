@@ -2,7 +2,7 @@
 # Grid Engine options (lines prefixed with #$)
 #$ -N Spark_Cluster_And_Query
 #$ -cwd                  
-#$ -l h_rt=00:50:00 
+#$ -l h_rt=00:59:00 
 #$ -l h_vmem=4G
 #$ -pe mpi 48
 #$ -R y
@@ -54,8 +54,12 @@ do
     ssh $i "cd $HOME/bash_scripts; ./start_worker.sh $mastername $drivername" &
 done
 
-######### submiting the query from the driver ##########
+######### submiting Spark PI application from the driver ##########
 
-ssh $drivername "./spark-textming.sh $mastername" 
+ssh $drivername "./spark-Pi.sh $mastername"
+ 
+######### submiting a Spark text mining  query from the driver ##########
+
+# ssh $drivername "./spark-textming.sh $mastername" 
 
 sleep 1h

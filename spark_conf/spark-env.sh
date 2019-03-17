@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-#export JAVA_HOME=/lustre/sw/spack/opt/spack/linux-centos7-x86_64/gcc-6.2.0/jdk-8u92-linux-x64-24xtmiygsdlaayomilfa5mnrasmxqlhj
 export JAVA_HOME=/usr
 
 
@@ -73,6 +72,5 @@ export JAVA_HOME=/usr
 # - MKL_NUM_THREADS=1        Disable multi-threading of Intel MKL
 # - OPENBLAS_NUM_THREADS=1   Disable multi-threading of OpenBLAS
 
-#export JAVA_HOME=/lustre/sw/spack/opt/spack/linux-centos7-x86_64/gcc-6.2.0/jdk-8u92-linux-x64-24xtmiygsdlaayomilfa5mnrasmxqlhj
 export JAVA_HOME=/usr
 
