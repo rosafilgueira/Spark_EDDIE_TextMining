@@ -119,7 +119,7 @@ The [defoe](https://github.com/alan-turing-institute/defoe) GitHub repository co
 
 	git clone https://github.com/alan-turing-institute/defoe.git
 
-Once cloned, the second step is to get the necesary data ( e.g. /sg/datastore/lib/groups/lac-store/blpaper/xmls) in your scratch directory ( e.g. /exports/eddie/scratch/< UUN >/blpaper/xmls) inside EDDIE.  Note, you could also use this [xml file](https://github.com/alan-turing-institute/i_newspaper_rods/blob/epcc-master/newsrods/test/fixtures/2000_04_24.xml) as an example, and download it into your scratch directory.
+Once cloned, the second step is to get the necesary data ( e.g. /sg/datastore/lib/groups/lac-store/blpaper/xmls) in your scratch directory ( e.g. /exports/eddie/scratch/< UUN >/blpaper) inside EDDIE.  Note, you could also use this [xml file](https://github.com/alan-turing-institute/i_newspaper_rods/blob/epcc-master/newsrods/test/fixtures/2000_04_24.xml) as an example, and download it into your scratch directory (e.g. /exports/eddie/scratch/< UUN >/blpaper/2000_04_24.xml).
 
 Before submitting a query you will need to Zip up the defoe source code (Spark needs this to run the query). More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/run-queries.md).
 
