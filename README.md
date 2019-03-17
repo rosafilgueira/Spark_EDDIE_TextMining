@@ -103,19 +103,39 @@ We have configured all of our PBS jobs and spark scripts to detect automatically
 
 Via a PBS-job, which acts as the driver:
 
-	qsub spark-driver-PI.job
+	qsub spark-driver-Pi.job
 
 Via an interactive session - Important ( you need to request a session with at least 8GB of memory):
 	
 	qlogin -l h_vmem=8G
 	./spark-interactive-Pi.sh
 		 
+
 Note: Addtional information can be found at this [link](https://spark.apache.org/docs/latest/submitting-applications.html)
 
 ### Submitting a TextMining query to the Spark-Cluster. This will requiere the following steps:
 	
-	2.1 ) Clone our TextMinging repository
-	2.2) 
+- Clone our TextMinging GitHub repository, called [defoe](https://github.com/alan-turing-institute/defoe)
+- Get the necesary data ( e.g. /sg/datastore/lib/groups/lac-store/blpaper/xmls) in your scratch directory ( e.g. /exports/eddie/scratch/< UUN >/blpaper) 
+
+- Zip up the defoe source code (Spark needs this to run the query)
+
+	zip -r defoe.zip defoe
+
+- Spark needs to know the data which you want to run a query over. You need to create a plain-text file (e.g. data.txt) with a list of the paths to the data files to query
+
+	 find /exports/eddie/scratch/< UUN >/blpaper -name "*.xml" > data.txt
+	 
+- And now you can submit a text-minining query either:
+	Via a PBS-job, which acts as the dirver:
+		
+		qsub spark-driver-textmining.job 
+		
+	Via an interactive session - Important ( you need to request a session with at least 8GB of memory):
+		
+		qlogin -l h_vmem=8G
+		./spark-interactive-textmining.sh
+		
 		
 			
 
