@@ -125,9 +125,12 @@ Before submitting a query you will need to zip up the **defoe** source code (Spa
 
 		zip -r defoe.zip defoe
 
-And later, you will to indicate which data (newspapers) which you want to run a query over. For doing so, you need to create a plain-text file (e.g. data.txt) with a list of the paths to the data files to query. More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/specify-data-to-query.md).
+And later, you will to indicate which data (newspapers) you want to use for running a query over. For doing so, you need to create a plain-text file (e.g. data.txt) with a list of the paths to the data files to query. This file will be stored in the same level than *defoe.zip*. More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/specify-data-to-query.md).
 
 	 	find /exports/eddie/scratch/< UUN >/blpaper -name "*.xml" > data.txt
+		
+Thefore, your defoe code, before submitting/running any query should look like ![this](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/defoe_code.png)
+
 	 
 After these two steps, you are now ready to launch a text-minining query to the Spark Cluster. We have many text mining queries inside defoe, but here we have used [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md) and [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md). We have prepared two scripts for doing that, and it will be very easy to modify these scripts to run another query.  As we explained before, you can run a Spark query using two options:
 
