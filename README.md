@@ -14,9 +14,9 @@ In your $HOME directory you need to have the following:
 * spark-2.4.0-bin-hadoop2.7 directory
 * bash_scripts
 * spark_conf
-* PBS-jobs for configuring the sparkcluster: sparkcluster_and_driver.job, sparkcluster.job
-* PBS-jobs for submmitng spark applications/queries: spark-driver-Pi.job, spark-driver-textming.job
-* scripts for running spark applications: spark-interactive-textmining.sh, spark-interactive-Pi.sh, spark-Pi.sh, spark-textmining.sh
+* PBS-jobs for configuring the Spark Cluster: sparkcluster_and_driver.job, sparkcluster.job
+* PBS-jobs for submmitng Spark applications/queries: spark-driver-Pi.job, spark-driver-textming.job
+* Scripts for running Spark applications: spark-interactive-textmining.sh, spark-interactive-Pi.sh, spark-Pi.sh, spark-textmining.sh
 * script for stopping spark cluster (no needed): spark_stop.sh
 
 IDEA:
