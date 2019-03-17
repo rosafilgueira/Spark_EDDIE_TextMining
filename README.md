@@ -129,7 +129,7 @@ And later, you will to indicate which data (newspapers) you want to use for runn
 
 	 	find /exports/eddie/scratch/< UUN >/blpaper -name "*.xml" > data.txt
 		
-Thefore, your defoe code, before submitting/running any query should look like ![this](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/defoe_code.png)
+Thefore, your defoe code, before submitting/running any query should look like ![this](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/defoe_code_1.png)
 
 	 
 After these two steps, you are now ready to launch a text-minining query to the Spark Cluster. We have many text mining queries inside defoe, but here we have used [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md) and [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md). We have prepared two scripts for doing that, and it will be very easy to modify these scripts to run another query.  As we explained before, you can run a Spark query using two options:
@@ -144,6 +144,8 @@ After these two steps, you are now ready to launch a text-minining query to the 
 			./spark-interactive-textmining.sh
 		
 		
+The results of any of these queries are stored in the *results.yml* ![file] https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/defoe_code_results.png
+
 If you want to run a different text mining query, you just need to modify any of the previous scripts, indicating the path of the query to use, and the argurments (if they are needed). 
 
 All the required information for submitting *Defoe text mining queries* can be found at this [link](https://github.com/alan-turing-institute/defoe/tree/master/docs). 			
