@@ -38,11 +38,9 @@ A couple of changes will be needed inside the *spark-default.conf* script:
  You might also want to configure more parameters inside *spark-defaults.conf* file (e.g. driver memory size of log directory).  
   
 # Start a Spark cluster within a PBS job
-We have two PBS jobs to provision a Spark Standalone Cluster ![SparkCluster Architecture](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkCluster_Architecture.png)  on-demand and for a specific period (e.g. 1 hour) of time. One PBS job (**Option 1**) sets up the Spark Cluster and the driver to submit a specific Spark application/Query and then it continues running for one hour, so more Spark application can be submitted later. And the other one (**Option 2**), just sets up the Spark Cluster (Master and Workers) and it doesnt submit any queries. 
+We have two PBS jobs to provision on-demand for a specific period of time (e.g. 1 hour) the following Spark Standalone Cluster ![SparkCluster Architecture](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkCluster_Architecture.png). 
 
-
-
-
+One PBS job (**Option 1**) sets up the Spark Cluster and the driver to submit a specific Spark application/Query and then it continues running for one hour, so more Spark application can be submitted later. And the other one (**Option 2**), just sets up the Spark Cluster (Master and Workers) and it doesnt submit any queries. 
 
 ## Spark Cluster and Driver (Option 1) 
 
