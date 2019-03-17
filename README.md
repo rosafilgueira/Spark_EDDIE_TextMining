@@ -40,7 +40,6 @@ Note: In this option we have already configured the driver to submit a Spark tex
 
                 qsub sparkcluster.sh
 
-
 You can modify it as you wish for reserving more or less nodes for your spark cluster. In the current scipt, we have used 3 nodes: one node for running the master, and:
 
 * sparkcluster_and_driver --> 1 node for running the worker and 1 node for running the driver.
