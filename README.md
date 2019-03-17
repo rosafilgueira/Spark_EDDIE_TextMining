@@ -116,25 +116,27 @@ Note: Addtional information can be found at this [link](https://spark.apache.org
 ### Submitting a TextMining query to the Spark-Cluster. This will requiere the following steps:
 	
 - Clone our TextMinging GitHub repository, called [defoe](https://github.com/alan-turing-institute/defoe)
+
 - Get the necesary data ( e.g. /sg/datastore/lib/groups/lac-store/blpaper/xmls) in your scratch directory ( e.g. /exports/eddie/scratch/< UUN >/blpaper) 
 
-- Zip up the defoe source code (Spark needs this to run the query)
+- Zip up the defoe source code (Spark needs this to run the query). More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/run-queries.md).
 
-	zip -r defoe.zip defoe
+		zip -r defoe.zip defoe
 
-- Spark needs to know the data which you want to run a query over. You need to create a plain-text file (e.g. data.txt) with a list of the paths to the data files to query
+- Spark needs to know the data which you want to run a query over. You need to create a plain-text file (e.g. data.txt) with a list of the paths to the data files to query. More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/specify-data-to-query.md)
 
-	 find /exports/eddie/scratch/< UUN >/blpaper -name "*.xml" > data.txt
+	 	find /exports/eddie/scratch/< UUN >/blpaper -name "*.xml" > data.txt
 	 
-- And now you can submit a text-minining query either:
-	Via a PBS-job, which acts as the dirver:
+- And now you can submit a text-minining query, for example [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md) or [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md), either :
+
+  - Via a PBS-job, which acts as the dirver. This PBS job lanunches the **keyword_by_year** Spark query to the Spark Cluster, using the specified xmls newspapers inside the *data.txt*:
 		
 		qsub spark-driver-textmining.job 
 		
-	Via an interactive session - Important ( you need to request a session with at least 8GB of memory):
+   - Via an interactive session - Important ( you need to request a session with at least 8GB of memory). The *spark-interactive-textmining.sh*, launches the **total_words** to the Spark Cluster using the specified xmls newspapers inside *data.txt*
 		
-		qlogin -l h_vmem=8G
-		./spark-interactive-textmining.sh
+			qlogin -l h_vmem=8G
+			./spark-interactive-textmining.sh
 		
 		
 			
