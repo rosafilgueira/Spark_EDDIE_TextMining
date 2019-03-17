@@ -81,7 +81,7 @@ Furthermore, you can also check the Master and Worker(s) log files created (by d
 		spark-rfilguei-org.apache.spark.deploy.worker.Worker-1-node1b26.ecdf.ed.ac.uk.out
 
 
-# Launching Spark applications to the Spark cluster
+# Launching Spark applications
 
 
 We can be launch Spark applications using the *bin/spark-submit* script. This script takes care of setting up the classpath with Spark and its dependencies, and can support different cluster managers and deploy modes that Spark supports:
@@ -97,9 +97,9 @@ We can be launch Spark applications using the *bin/spark-submit* script. This sc
   	[application-arguments]
 
 
-We have configured all of our PBS jobs and spark scripts to detect automatically the *master-url* (using the *master.log* file) and the total number of cores available (using *worker.log*), you dont have to type them yourself in the *bin/spark-submit*.  
+We have configured all of our PBS jobs and spark scripts to detect automatically the *master-url* (using the *master.log* file) and the total number of cores available (using *worker.log*), you dont have to type them yourself in the *bin/spark-submit*.   
 
-### Submitting Spark-Pi to Spark-Cluster from the login node: 
+### Launching Spark-Pi application
 
 Via a PBS-job, which acts as the driver:
 
@@ -113,15 +113,15 @@ Via an interactive session - Important ( you need to request a session with at l
 
 Note: Addtional information can be found at this [link](https://spark.apache.org/docs/latest/submitting-applications.html)
 
-### Submitting a TextMining query to the Spark-Cluster. This will requiere the following steps:
+### Launching a Spark Text Mining query
 
 The [defoe](https://github.com/alan-turing-institute/defoe) GitHub repository contains code to analyse historical books and newspapers datasets using Apache Spark. Thefore, the first step is to clone it into your $HOME
 
 	git clone https://github.com/alan-turing-institute/defoe.git
 
-Once cloned, the second step is to get the necesary data ( e.g. /sg/datastore/lib/groups/lac-store/blpaper/xmls) in your scratch directory ( e.g. /exports/eddie/scratch/< UUN >/blpaper) inside EDDIE.  Note, you could also use this [xml file](https://github.com/alan-turing-institute/i_newspaper_rods/blob/epcc-master/newsrods/test/fixtures/2000_04_24.xml) as an example, and download it into your scratch directory (e.g. /exports/eddie/scratch/< UUN >/blpaper/2000_04_24.xml).
+Once cloned, the second step is to get the necesary data ( e.g. /sg/datastore/lib/groups/lac-store/blpaper/xmls) in EDDIE. For testing, I created a  directory, called *blpaper*, inside my scratch space (/exports/eddie/scratch/< UUN >/blpaper).  Note that, if you do not have access to the *sg* datastore, you could download this [xml file](https://github.com/alan-turing-institute/i_newspaper_rods/blob/epcc-master/newsrods/test/fixtures/2000_04_24.xml) into your scratch directory and use it for testing.
 
-Before submitting a query you will need to Zip up the defoe source code (Spark needs this to run the query). More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/run-queries.md).
+Before submitting a query you will need to zip up the **defoe** source code (Spark needs this to run the query). More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/run-queries.md).
 
 		zip -r defoe.zip defoe
 
@@ -129,9 +129,9 @@ And later, you will to indicate which data (newspapers) which you want to run a 
 
 	 	find /exports/eddie/scratch/< UUN >/blpaper -name "*.xml" > data.txt
 	 
-After these two steps, you are now ready to submit a text-minining query to the Spark Cluster. For example, you could run [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md)  or [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md) queries. We have prepared two scripts for doing that:
+After these two steps, you are now ready to launch a text-minining query to the Spark Cluster. We have many text mining queries inside defoe, but here we have used [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md) and [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md). We have prepared two scripts for doing that, and it will be very easy to modify these scripts to run another query.  As we explained before, you can run a Spark query using two options:
 
-  - Via a PBS-job, which acts as the dirver. This PBS job lanunches the **keyword_by_year** Spark query to the Spark Cluster, using the specified xmls newspapers inside the *data.txt*:
+  - Via a PBS-job, which acts as the dirver. This PBS job lanunches the **keyword_by_year**  query to the Spark Cluster, using the specified xmls newspapers inside the *data.txt*:
 		
 		qsub spark-driver-textmining.job 
 		
@@ -141,7 +141,9 @@ After these two steps, you are now ready to submit a text-minining query to the 
 			./spark-interactive-textmining.sh
 		
 		
-All the required information for submitting different Text Mining queries can be found at this [link](https://github.com/alan-turing-institute/defoe/tree/master/docs). 			
+If you want to run a different text mining query, you just need to modify any of the previous scripts, indicating the path of the query to use, and the argurments (if they are needed). 
+
+All the required information for submitting *defoe text mining queries* can be found at this [link](https://github.com/alan-turing-institute/defoe/tree/master/docs). 			
 
 # Monitoring the Spark Cluster and Applications/queries via UIs
 
