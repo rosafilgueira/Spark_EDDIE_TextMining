@@ -56,6 +56,6 @@ done
 
 ######### submiting the query from the driver ##########
 
-ssh $drivername "./spark-query.sh $mastername" 
+ssh $drivername "./spark-textming.sh $mastername" 
 
 sleep 1h
