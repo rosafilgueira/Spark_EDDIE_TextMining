@@ -29,8 +29,8 @@ IDEA:
 	cp spark_conf/* spark-2.4.0-bin-hadoop2.7/conf/.
 	
 A couple of changes will be needed inside the spark-default.conf script:
--  Create a tmp directory ( e.g. /exports/eddie/scratch/<UUN>/tmp) to store temporal spark files. Modify the *spark.local.dir* flag to point out this path.
--  Create a events directory (.e.g /home/eddie/scratch/<UUN>/events) to store the Spark events. Modify the *spark.eventLog.dir* flat to point tis path. 
+-  Create a tmp directory ( e.g. /exports/eddie/scratch/< UUN >/tmp) to store temporal spark files. Modify the *spark.local.dir* flag to point out this path.
+-  Create a events directory (.e.g /home/eddie/scratch/< UUN >/events) to store the Spark events. Modify the *spark.eventLog.dir* flat to point tis path. 
 
  You might also want to configure more parameters inside spark-defaults.conf file (e.g. driver memory size of log directory).  
   
