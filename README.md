@@ -1,5 +1,5 @@
-# Spark_on_HPC_cluster
-This repository describes all the steps necesaries to create a **multinode Spark standalone cluster** (version 2.4.0) within a PBS-job. We have tested those scripts using the [EDDIE HPC cluster](https://www.ed.ac.uk/information-services/research-support/research-computing/ecdf/high-performance-computing), hosted at Universtiy of Edinburgh.
+# Spark on EDDIE
+This repository describes all the steps necesaries to create a **multinode Spark standalone cluster** (version 2.4.0) within a PBS-job. We have tested those scripts using the [EDDIE HPC cluster](https://www.ed.ac.uk/information-services/research-support/research-computing/ecdf/high-performance-computing), hosted at Universtiy of Edinburgh. And we present here two Spark Applications to launch them using the Spark cluster, once this one is running.
 
 # Installation Steps
 
@@ -11,13 +11,13 @@ This repository describes all the steps necesaries to create a **multinode Spark
 ### Copy the scripts and folders of this repository in your $HOME directory
 
 In your $HOME directory you need to have the following:
-* spark-2.4.0-bin-hadoop2.7 directory
+* spark-2.4.0-bin-hadoop2.7 
 * bash_scripts
 * spark_conf
-* PBS-jobs for configuring the Spark Cluster: sparkcluster_and_driver.job, sparkcluster.job
+* PBS-jobs for configuring the Spark cluster: sparkcluster_and_driver.job, sparkcluster.job
 * PBS-jobs for submmitng Spark applications/queries: spark-driver-Pi.job, spark-driver-textming.job
 * Scripts for running Spark applications: spark-interactive-textmining.sh, spark-interactive-Pi.sh, spark-Pi.sh, spark-textmining.sh
-* Script for stopping spark cluster (usually no needed): spark_stop.sh
+* Script for stopping Spark cluster (usually no needed): spark_stop.sh
 
 IDEA:
 	
@@ -38,17 +38,18 @@ A couple of changes will be needed inside the *spark-default.conf* script:
  You might also want to configure more parameters inside *spark-defaults.conf* file (e.g. driver memory size of log directory).  
   
 # Start a Spark cluster within a PBS job
-We have two PBS jobs to provision on-demand for a specific period of time (e.g. 1 hour) the following Spark Standalone Cluster ![SparkCluster Architecture](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkCluster_Architecture.png). 
+
+We have two options (via two different PBS jobs) to provision on-demand for a specific period of time (e.g. 1 hour) the following Spark Standalone Cluster ![SparkCluster Architecture](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkCluster_Architecture.png). 
 
 The first PBS job (**Option 1**) sets up the Spark Cluster (Master and Workers) and the driver to submit a specific Spark application/Query and then it continues running for one hour, so more Spark applications can be submitted later. While the second PBS job (**Option 2**), just sets up the Spark Cluster (Master and Workers) and it doesnt submit any queries - we dont have a driver in this case. 
 
 ## Spark Cluster and Driver (Option 1) 
 
-The following PBS job starts a Spark master, Spark workers, and a driver. The driver submits automatically a Spark Application/query to the Spark cluster once is running.
+The following PBS job starts a Spark master, Spark workers, and a driver. The driver submits automatically a Spark application/query to the Spark cluster once is running.
 
   		qsub sparkcluster_and_driver.job
 
-Note: In this PBS job we have already configured a node to runs as the driver, which launches ( *spark-Pi.sh* script) a simple Spark Application (calculation of Pi). The *Spark Pi* application comes within the Spark source code . If you want to change the PBS to launch an Spark Text Mining query (e.g. *spark-textmining.sh*) or another Spark application, you just need to modify/replace this script. 
+Note: In this PBS job we have already configured a node to runs as the driver, which launches ( *spark-Pi.sh* script) a simple Spark Application (calculation of Pi). The *Spark Pi* application comes within the Spark source code . If you want to change the PBS to launch an Spark text mining query (e.g. *spark-textmining.sh*) or another Spark application, you just need to modify/replace this script. 
 
 ## Spark Cluster only (Option 2)
 
@@ -56,7 +57,7 @@ The following PBS job starts a Spark master and workers.
 
                 qsub sparkcluster.job
 		
-Once this PBS been accepted and you have the resoureces available, you can launch Spark Applications/Queries to the Spark Cluster. And you can do this either with  another PBS-job (e.g. *spark-driver-textmining.job*, *spark-driver-Pi.job*) ; or with an interactive session ( e.g. *spark-interactive-textmining.sh*, *spark-interactive-Pi.sh*) 		
+Once this PBS been accepted and you have the resoureces available, you can launch Spark applications/queries to the Spark cluster. And you can do this either with  another PBS-job (e.g. *spark-driver-textmining.job*, *spark-driver-Pi.job*) ; or with an interactive session ( e.g. *spark-interactive-textmining.sh*, *spark-interactive-Pi.sh*) 		
 
 
 ## Generic comments for both options
@@ -70,19 +71,18 @@ You can modify both PBS-jobs as you wish for running more time (now they are con
 
 ## Spark Master, Workers and Driver nodes
 
-Once you have running your Spark Cluster (your PBS job has been accepted and you have the resoureces available), you can check which nodes have been asigned as Master, Worker(s) and Driver using the *master.log*, *worker.log*, and *driver.log* stored under the *bash_scripts* directory. 
+Once you have running your Spark cluster (your PBS job has been accepted and you have the resoureces available), you can check which nodes have been asigned as master, worker(s) and Driver using the *master.log*, *worker.log*, and *driver.log* stored under the *bash_scripts* directory. 
 
 Remember that if you used *sparkcluster.job* for setting up your cluster, you wont have a driver, therefore the *driver.log* wont exit. 
 
-Furthermore, you can also check the Master and Worker(s) log files created (by default) inside $HOME/spark-2.4.0-bin-hadoop2.7/logs to see if everything have been started correctly. 
+Furthermore, you can also check the master and worker(s) log files created (by default) inside $HOME/spark-2.4.0-bin-hadoop2.7/logs to see if everything have been started correctly. 
 
 	ls spark-2.4.0-bin-hadoop2.7/logs/
 		spark-rfilguei-org.apache.spark.deploy.master.Master-1-node1b31.ecdf.ed.ac.uk.out
 		spark-rfilguei-org.apache.spark.deploy.worker.Worker-1-node1b26.ecdf.ed.ac.uk.out
 
 
-# Launching Spark applications
-
+# Launching Spark Applications
 
 We can be launch Spark applications using the *bin/spark-submit* script. This script takes care of setting up the classpath with Spark and its dependencies, and can support different cluster managers and deploy modes that Spark supports:
 
@@ -97,9 +97,9 @@ We can be launch Spark applications using the *bin/spark-submit* script. This sc
   	[application-arguments]
 
 
-We have configured all of our PBS jobs and spark scripts to detect automatically the *master-url* (using the *master.log* file) and the total number of cores available (using *worker.log*), you dont have to type them yourself in the *bin/spark-submit*.   
+We have configured all of our PBS jobs and Spark scripts to detect automatically the *master-url* (using the *master.log* file) and the total number of cores available (using *worker.log*), you dont have to type them yourself in the *bin/spark-submit*.   
 
-### Launching Spark-Pi application
+### Launching the *Spark-Pi* application
 
 Via a PBS-job, which acts as the driver:
 
@@ -119,7 +119,7 @@ Note: Addtional information can be found at this [link](https://spark.apache.org
 
 	git clone https://github.com/alan-turing-institute/defoe.git
 
-Once cloned, the second step is to get the necesary data ( e.g. /sg/datastore/lib/groups/lac-store/blpaper/xmls) in EDDIE. For testing, I created a  directory, called *blpaper*, inside my scratch space (/exports/eddie/scratch/< UUN >/blpaper).  Note that, if you do not have access to the *sg* datastore, you could download this [xml file](https://github.com/alan-turing-institute/i_newspaper_rods/blob/epcc-master/newsrods/test/fixtures/2000_04_24.xml) into your scratch directory and use it for testing.
+Once cloned, the second step is to get the necesary data ( e.g. /sg/datastore/lib/groups/lac-store/blpaper/xmls) in EDDIE. For testing, I created a  directory, called *blpaper*, inside my scratch space (/exports/eddie/scratch/< UUN >/blpaper). Note that, if you do not have access to the *sg* datastore, you could download this [xml file](https://github.com/alan-turing-institute/i_newspaper_rods/blob/epcc-master/newsrods/test/fixtures/2000_04_24.xml) into your scratch directory and use it for testing.
 
 Before submitting a query you will need to zip up the **defoe** source code (Spark needs this to run the query). More information at this [link](https://github.com/alan-turing-institute/defoe/blob/master/docs/run-queries.md).
 
@@ -133,7 +133,7 @@ Thefore, your defoe code, before submitting/running any query should look like
 
 ![this](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/defoe_code_2.png)
 
-After these two steps, you are now ready to launch a text-minining query to the Spark Cluster. We have many text mining queries inside defoe, but here we have used [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md) and [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md). We have prepared two scripts for doing that, and it will be very easy to modify these scripts to run another query.  As we explained before, you can run a Spark query using two options:
+After these two steps, you are now ready to launch a text-minining query to the Spark cluster. We have many text mining queries inside defoe, but here we have used [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md) and [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md). We have prepared two scripts for doing that, and it will be very easy to modify these scripts to run another query. As we explained before, you can run a Spark query using two options:
 
   - Via a PBS-job, which acts as the dirver. This PBS job lanunches the **keyword_by_year**  query to the Spark Cluster, using the specified xmls newspapers inside the *data.txt*:
 		
@@ -143,7 +143,6 @@ After these two steps, you are now ready to launch a text-minining query to the 
 		
 			qlogin -l h_vmem=8G
 			./spark-interactive-textmining.sh
-		
 		
 The results of any of these queries are stored in the *results.yml* 
 
@@ -155,15 +154,15 @@ All the required information for submitting *Defoe text mining queries* can be f
 
 # Monitoring the Spark Cluster and Applications/queries via UIs
 
-Spark offers different UIs to monitor the Spark Master, Workers and Driver (running an Spark Application/query). The only thing is needed is to create the proper bridges in your cluster. For doing that, you will need to check the URLS of the master ( e.g. opening *master.log* ), workers (e.g. opening *worker.log*), and driver (e.g. opening *driver.log* or checking in which node is running your spark-driver-textmining.job). 
+Spark offers different UIs to monitor the Spark master, workers and driver (running an Spark application/query). The only thing is needed is to create the proper ssh bridges. For doing that, you will need to check the URLS of the master ( e.g. opening *master.log* ), workers (e.g. opening *worker.log*), and driver (e.g. opening *driver.log* or checking in which node is running your spark-driver-textmining.job). 
 
-Once you have these URLs of these 3 nodes, you just need to do the following
+Once you have these URLs of these three nodes, you just need to do the following
 
-- Spark Cluster UI – bridge: ssh UUN@eddie3.ecdf.ed.ac.uk -L8080:MASTER-URL:8080 , and then in your web browser type localhost://8080
+- Spark cluster UI – bridge: ssh UUN@eddie3.ecdf.ed.ac.uk -L8080:MASTER-URL:8080 , and then in your web browser type localhost://8080
 	
 	![Spark Master UI](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkClusterUI.png)
 	
-- Spark Worker UI – bridge: ssh UUN@eddie3.ecdf.ed.ac.uk -L8081:WORKER-URL:8081 , and then in your web browser type localhost://8081
+- Spark worker UI – bridge: ssh UUN@eddie3.ecdf.ed.ac.uk -L8081:WORKER-URL:8081 , and then in your web browser type localhost://8081
 	
 	![Spark Worker UI](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkWorkerUI.png)
 
