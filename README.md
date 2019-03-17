@@ -1,22 +1,22 @@
 # Spark on EDDIE
-This repository describes all the steps necesaries to create a **multinode Spark standalone cluster** (version 2.4.0) within a PBS-job. We have tested those scripts using the [EDDIE HPC cluster](https://www.ed.ac.uk/information-services/research-support/research-computing/ecdf/high-performance-computing), hosted at Universtiy of Edinburgh. And we present here two Spark Applications to launch them using the Spark cluster, once this one is running.
+This repository describes all the steps necesaries to create a **multinode Spark standalone cluster** (version 2.4.0) within a PBS-job. We have tested those scripts using the [EDDIE HPC cluster](https://www.ed.ac.uk/information-services/research-support/research-computing/ecdf/high-performance-computing), hosted at Universtiy of Edinburgh. This repository also presents two Spark Applications to be launched using the Spark cluster, once this one is running.
 
 # Installation Steps
 
-### Download Spark
+### Download Spark 2.4.0
 
  	wget http://apache.mirrors.nublue.co.uk/spark/spark-2.4.0/spark-2.4.0-bin-hadoop2.7.tgz
 	tar xvf spark-2.4.0-bin-hadoop2.7
 
-### Copy the scripts and folders of this repository in your $HOME directory
+### Copy all the scripts and folders of this repository in your $HOME directory
 
 In your $HOME directory you need to have the following:
 * spark-2.4.0-bin-hadoop2.7 
 * bash_scripts
 * spark_conf
-* PBS-jobs for configuring the Spark cluster: sparkcluster_and_driver.job, sparkcluster.job
-* PBS-jobs for submmitng Spark applications/queries: spark-driver-Pi.job, spark-driver-textming.job
-* Scripts for running Spark applications: spark-interactive-textmining.sh, spark-interactive-Pi.sh, spark-Pi.sh, spark-textmining.sh
+* PBS-jobs for provisioning the Spark cluster: sparkcluster_and_driver.job, sparkcluster.job
+* PBS-jobs for launching Spark applications/queries: spark-driver-Pi.job, spark-driver-textming.job
+* Scripts for launching Spark applications: spark-interactive-textmining.sh, spark-interactive-Pi.sh, spark-Pi.sh, spark-textmining.sh
 * Script for stopping Spark cluster (usually no needed): spark_stop.sh
 
 IDEA:
@@ -31,15 +31,15 @@ IDEA:
 	
 	cp spark_conf/* spark-2.4.0-bin-hadoop2.7/conf/.
 	
-A couple of changes will be needed inside the *spark-default.conf* script:
+A couple of changes are needed in the *spark-default.conf* file in order to have Spark successfully installed into your EDDIE account:
 -  Create a tmp directory ( e.g. /exports/eddie/scratch/< UUN >/tmp) to store temporal spark files. Modify the *spark.local.dir* flag to point out this path.
 -  Create a events directory (.e.g /home/eddie/scratch/< UUN >/events) to store the Spark events. Modify the *spark.eventLog.dir* flat to point tis path. 
 
- You might also want to configure more parameters inside *spark-defaults.conf* file (e.g. driver memory size of log directory).  
+ You might also want to configure another parameters inside *spark-defaults.conf* file (e.g. driver memory size of log directory).  
   
 # Start a Spark cluster within a PBS job
 
-We have two options (via two different PBS jobs) to provision on-demand for a specific period of time (e.g. 1 hour) the following Spark Standalone Cluster ![SparkCluster Architecture](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkCluster_Architecture.png). 
+This repository has two options (via two different PBS jobs) to provision on-demand for a specific period of time (e.g. 1 hour) the following Spark Standalone Cluster ![SparkCluster Architecture](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkCluster_Architecture.png). 
 
 The first PBS job (**Option 1**) sets up the Spark Cluster (Master and Workers) and the driver to submit a specific Spark application/Query and then it continues running for one hour, so more Spark applications can be submitted later. While the second PBS job (**Option 2**), just sets up the Spark Cluster (Master and Workers) and it doesnt submit any queries - we dont have a driver in this case. 
 
@@ -49,7 +49,7 @@ The following PBS job starts a Spark master, Spark workers, and a driver. The dr
 
   		qsub sparkcluster_and_driver.job
 
-Note: In this PBS job we have already configured a node to runs as the driver, which launches ( *spark-Pi.sh* script) a simple Spark Application (calculation of Pi). The *Spark Pi* application comes within the Spark source code . If you want to change the PBS to launch an Spark text mining query (e.g. *spark-textmining.sh*) or another Spark application, you just need to modify/replace this script. 
+Note: In this PBS job it is configured a node to run as the driver, which launches ( *spark-Pi.sh* script) a simple Spark application (calculation of Pi). The *Spark Pi* application comes within the Spark source code . If you want to change the PBS job to launch an Spark text mining query (e.g. *spark-textmining.sh*) or another Spark application, you just need to modify/replace this script. 
 
 ## Spark Cluster only (Option 2)
 
@@ -57,7 +57,7 @@ The following PBS job starts a Spark master and workers.
 
                 qsub sparkcluster.job
 		
-Once this PBS been accepted and you have the resoureces available, you can launch Spark applications/queries to the Spark cluster. And you can do this either with  another PBS-job (e.g. *spark-driver-textmining.job*, *spark-driver-Pi.job*) ; or with an interactive session ( e.g. *spark-interactive-textmining.sh*, *spark-interactive-Pi.sh*) 		
+Once this PBS has been accepted and you have the resoureces available, you can launch Spark applications/queries to the Spark cluster. And you can do this either with  another PBS-job (e.g. *spark-driver-textmining.job*, *spark-driver-Pi.job*) ; or with an interactive session ( e.g. *spark-interactive-textmining.sh*, *spark-interactive-Pi.sh*) 		
 
 
 ## Generic comments for both options
