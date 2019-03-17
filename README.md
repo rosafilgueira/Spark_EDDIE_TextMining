@@ -8,7 +8,7 @@ This repository describes all the steps necesaries to create a **multinode Spark
  	wget http://apache.mirrors.nublue.co.uk/spark/spark-2.4.0/spark-2.4.0-bin-hadoop2.7.tgz
 	tar xvf spark-2.4.0-bin-hadoop2.7
 
-### Copy the contain of this repository in your $HOME directory
+### Copy the scripts and folders of this repository in your $HOME directory
 
 In your $HOME directory you need to have the following:
 * spark-2.4.0-bin-hadoop2.7 directory
