@@ -61,11 +61,11 @@ Once this PBS been accepted and you have the resoureces available, you can launc
 
 ## Generic comments for both options
 
-You can modify both PBS-jobs as you wish for running more time (now they are configured to 1 hour) and for reserving more or less nodes for your spark cluster. In the current scipts, we have used 3 nodes: one node for running the master, and:
+You can modify both PBS-jobs as you wish for running more time (now they are configured to 1 hour) and for reserving more or less nodes for your spark cluster. In the current scipts, we have used 3 nodes. One node for running the master, and:
 
-* in the case of the *sparkcluster_and_driver* job, 1 node for running the worker and 1 node for running the driver (, which submits inmidiately the Spark PI application to the Spark Master).
+- in the case of the *sparkcluster_and_driver* job, 1 node for running the worker and 1 node for running the driver (, which submits inmidiately the Spark PI application to the Spark Master).
 
-* in the case of the *sparkcluster* job, 2 nodes for running the workers.  
+- in the case of the *sparkcluster* job, 2 nodes for running the workers.  
 
 
 ## Spark Master, Workers and Driver nodes
@@ -99,20 +99,21 @@ We can be launch Spark applications using the *bin/spark-submit* script. This sc
 
 We have configured all of our PBS jobs and spark scripts to detect automatically the *master-url* (using the *master.log* file) and the total number of cores available (using *worker.log*), you dont have to type them yourself in the *bin/spark-submit*.  
 
-1) Submitting Spark-Pi to Spark-Cluster from the login node: 
+### Submitting Spark-Pi to Spark-Cluster from the login node: 
 
-1.1) Via a PBS-job, which acts as the driver:
+Via a PBS-job, which acts as the driver:
 
 	qsub spark-driver-PI.job
 
-1.2 ) Via an interactive session - Important ( you need to request a session with at least 8GB of memory):
+Via an interactive session - Important ( you need to request a session with at least 8GB of memory):
 	
 	qlogin -l h_vmem=8G
 	./spark-interactive-Pi.sh
 		 
- Note: Addtional information can be found at this [link](https://spark.apache.org/docs/latest/submitting-applications.html)
+Note: Addtional information can be found at this [link](https://spark.apache.org/docs/latest/submitting-applications.html)
 
-2) Submitting a TextMining query to the Spark-Cluster. This will requiere the following steps:
+### Submitting a TextMining query to the Spark-Cluster. This will requiere the following steps:
+	
 	2.1 ) Clone our TextMinging repository
 	2.2) 
 		
