@@ -34,7 +34,7 @@ We have two PBS-jobs to provision on-demand and for a specific period of time th
 
   		qsub sparkcluster_and_driver.sh
 
-Note: In this option we have already configured the driver to submit a Spark text-mining query to the Spark Cluster ( ./spark-query.sh). If you want to change the query or submit another application ( e.g. spark-Pi.sh), you just need to modify/replace this spark-query.sh script. 
+Note: In this option we have already configured the driver to submit a Spark text-mining query to the Spark Cluster using  the **spark-textming.sh** script. If you want to change the query or submit another application ( e.g. spark-Pi.sh), you just need to modify/replace this script. 
 
 * Option 2:PBS-job starts the master, workers and registering all workers against master. For submitting Spark Applications/Queries to the Spark Cluster we need to do it via: a) another PBS-job ; b) interactive session.  
 
@@ -42,11 +42,13 @@ Note: In this option we have already configured the driver to submit a Spark tex
 
 
 You can modify it as you wish for reserving more or less nodes for your spark cluster. In the current scipt, we have used 3 nodes: one node for running the master, and:
+
 * sparkcluster_and_driver --> 1 node for running the worker and 1 node for running the driver.
 * sparkcluster --> 2 nodes for running the workers.  
 
 
 # Submit spark applications to the Spark cluster
+
 Once you have the spark cluster running ( your PBS job has been accepted and you have the resoureces available), you can submit spark applications to it. 
 
 1) Submitting Spark-PI to Spark-Cluster from the login node: 
