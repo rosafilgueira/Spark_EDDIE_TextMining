@@ -17,7 +17,7 @@ In your $HOME directory you need to have the following:
 * PBS-jobs for configuring the Spark Cluster: sparkcluster_and_driver.job, sparkcluster.job
 * PBS-jobs for submmitng Spark applications/queries: spark-driver-Pi.job, spark-driver-textming.job
 * Scripts for running Spark applications: spark-interactive-textmining.sh, spark-interactive-Pi.sh, spark-Pi.sh, spark-textmining.sh
-* script for stopping spark cluster (no needed): spark_stop.sh
+* Script for stopping spark cluster (usually no needed): spark_stop.sh
 
 IDEA:
 	
