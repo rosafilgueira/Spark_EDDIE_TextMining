@@ -149,21 +149,15 @@ Spark offers different UIs to monitor the Spark Master, Workers and Driver (runn
 
 Once you have these 3 nodes, you just need to:
 
-- Spark Cluster UI – port 8080 – bridge: 
-
-	ssh UUN@eddie3.ecdf.ed.ac.uk -L8080:MASTER-URL:8080
+- Spark Cluster UI – bridge: ssh UUN@eddie3.ecdf.ed.ac.uk -L8080:MASTER-URL:8080
 	
-	![Spark Master UI]*https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkClusterUI.png)
+	![Spark Master UI](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkClusterUI.png)
 	
-- Spark Worker UI – port 8081 – bridge: 
-
-	ssh UUN@eddie3.ecdf.ed.ac.uk -L8081:WORKER-URL:8081
+- Spark Worker UI – bridge: ssh UUN@eddie3.ecdf.ed.ac.uk -L8081:WORKER-URL:8081
 	
 	![Spark Worker UI](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkWorkerUI.png)
 
-- Application (Driver) UI – port 4040 – bridge:
-
-	ssh UUN@eddie3.ecdf.ed.ac.uk -L4040:DRIVER-URL:4040
-	
+- Application (Driver) UI – bridge: ssh UUN@eddie3.ecdf.ed.ac.uk -L4040:DRIVER-URL:4040  (This one only works while the application is running in the Spark cluster)
 	![Spark Driver UI](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/ApplicationUI-1.png)
+	
 
