@@ -13,7 +13,7 @@ In your $HOME directory you need to have the following:
 * spark_conf
 * PBS-jobs for configuring the sparkcluster: sparkcluster_and_driver.job, sparkcluster.job
 * PBS-jobs for submmitng spark applications/queries: spark-driver-Pi.job, spark-driver-textming.job
-* scripts for running spark applications: spark-interactive-textming.sh, spark-interactive-Pi.sh, spark-Pi.sh, spark-textming.sh
+* scripts for running spark applications: spark-interactive-textmining.sh, spark-interactive-Pi.sh, spark-Pi.sh, spark-textmining.sh
 * script for stopping spark cluster (no needed): spark_stop.sh
 
 IDEA:
@@ -41,9 +41,9 @@ We have two PBS-jobs to provision on-demand and for a specific period (1 hour) o
 
   		qsub sparkcluster_and_driver.job
 
-Note: In this option we have already configured the driver to submit a simple Spark Application (calculation of Pi) tha comes with the Spark source code using  the *spark-Pi.sh* script. If you want to change a Spark Text Mining query (e.g. *spark-textminingh.sh*) or submit another application, you just need to modify/replace this script. 
+Note: In this option we have already configured the driver to submit a simple Spark Application (calculation of Pi) tha comes with the Spark source code using  the *spark-Pi.sh* script. If you want to change a Spark Text Mining query (e.g. *spark-textmining.sh*) or submit another application, you just need to modify/replace this script. 
 
-* **Option 2**:This PBS-job starts the master and workers. For submitting Spark Applications/Queries to the Spark Cluster we need to do it via: a) another PBS-job (e.g. *spark-driver-textminig.job*) ; b) interactive session ( e.g. *spark-interactive-textminig.sh*) 
+* **Option 2**:This PBS-job starts the master and workers. For submitting Spark Applications/Queries to the Spark Cluster we need to do it via: a) another PBS-job (e.g. *spark-driver-textmining.job*) ; b) interactive session ( e.g. *spark-interactive-textmining.sh*) 
 
                 qsub sparkcluster.job
 
