@@ -48,7 +48,7 @@ The following PBS job starts a Spark master, Spark workers, and a driver. The dr
 
   		qsub sparkcluster_and_driver.job
 
-Note: In this PBS job we have already configured a node to runs as the driver, which submits ( *spark-Pi.sh* script) a simple Spark Application (calculation of Pi). This Spark application comes within the Spark source code . If you want to change it to submit an Spark Text Mining query (e.g. *spark-textmining.sh*) or another application, you just need to modify/replace this script. 
+Note: In this PBS job we have already configured a node to runs as the driver, which launches ( *spark-Pi.sh* script) a simple Spark Application (calculation of Pi). The *Spark Pi* application comes within the Spark source code . If you want to change the PBS to launch an Spark Text Mining query (e.g. *spark-textmining.sh*) or another Spark application, you just need to modify/replace this script. 
 
 ## Spark Cluster only (Option 2)
 
@@ -56,12 +56,12 @@ The following PBS job starts a Spark master and workers.
 
                 qsub sparkcluster.job
 		
-For submitting later (once the Spark Cluster is running) Spark Applications/Queries to the Spark Cluster we need to do it via: a) another PBS-job (e.g. *spark-driver-textmining.job*, *spark-driver-Pi.job*) ; b) interactive session ( e.g. *spark-interactive-textmining.sh*, *spark-interactive-Pi.sh*) 		
+Once this PBS been accepted and you have the resoureces available, you can launch Spark Applications/Queries to the Spark Cluster. And you can do this either with  another PBS-job (e.g. *spark-driver-textmining.job*, *spark-driver-Pi.job*) ; or with an interactive session ( e.g. *spark-interactive-textmining.sh*, *spark-interactive-Pi.sh*) 		
 
 
 ## Generic comments for both options
 
-You can modify both PBS-jobs as you wish for running more time (now it is configured to 1 hour) and for reserving more or less nodes for your spark cluster. In the current scipts, we have used 3 nodes: one node for running the master, and:
+You can modify both PBS-jobs as you wish for running more time (now they are configured to 1 hour) and for reserving more or less nodes for your spark cluster. In the current scipts, we have used 3 nodes: one node for running the master, and:
 
 * in the case of the *sparkcluster_and_driver* job, 1 node for running the worker and 1 node for running the driver (, which submits inmidiately the Spark PI application to the Spark Master).
 
@@ -70,29 +70,47 @@ You can modify both PBS-jobs as you wish for running more time (now it is config
 
 ## Spark Master, Workers and Driver nodes
 
-Once you have running your Spark Cluster, you can check which nodes have been asigned as Master, Worker(s) and Driver using the *master.log*, *worker.log*, and *driver.log* stored under the bash_scripts directory. 
+Once you have running your Spark Cluster (your PBS job has been accepted and you have the resoureces available), you can check which nodes have been asigned as Master, Worker(s) and Driver using the *master.log*, *worker.log*, and *driver.log* stored under the *bash_scripts* directory. 
 
-Remember that if you used *sparkcluster.job* for setting up your cluster, you wont have a driver, therefore the driver.log wont exit. 
+Remember that if you used *sparkcluster.job* for setting up your cluster, you wont have a driver, therefore the *driver.log* wont exit. 
 
-Furthermore, you can also check the Master and Worker(s) log files created (by default) inside $HOME/spark-2.4.0-bin-hadoop2.7/logs to see if everything has been started correctly. 
+Furthermore, you can also check the Master and Worker(s) log files created (by default) inside $HOME/spark-2.4.0-bin-hadoop2.7/logs to see if everything have been started correctly. 
 
 	ls spark-2.4.0-bin-hadoop2.7/logs/
 		spark-rfilguei-org.apache.spark.deploy.master.Master-1-node1b31.ecdf.ed.ac.uk.out
 		spark-rfilguei-org.apache.spark.deploy.worker.Worker-1-node1b26.ecdf.ed.ac.uk.out
 
 
-# Submit spark applications to the Spark cluster
+# Launching Spark applications to the Spark cluster
 
-Once you have the spark cluster running ( your PBS job has been accepted and you have the resoureces available), you can submit spark applications to it.  We have configured our scripts in order to make use of *master.log*, so you dont have to type the master url yourself. And also, our scripts make use of the *worker.log* to calculate the number of cores available to run our Spark applications/queries. 
 
-1) Submitting Spark-PI to Spark-Cluster from the login node: 
-	1.1) Via a PBS-job which will act as the driver:
-		qsub spark-driver-PI.job
-	1.2 ) Via an interactive session - Important ( you need to request a session with at least 8GB of memory):
-		 qlogin -l h_vmem=8G
-		 ./spark-interactive-Pi.sh
+We can be launch Spark applications using the *bin/spark-submit* script. This script takes care of setting up the classpath with Spark and its dependencies, and can support different cluster managers and deploy modes that Spark supports:
+
+	./bin/spark-submit \
+ 	 --class <main-class> \
+  	--master <master-url> \
+  	--deploy-mode <deploy-mode> \
+  	--conf <key>=<value> \
+  	--total-executor-cores <total number of cores avaiable among all the worker>
+  	... # other options
+  	<application-jar> \
+  	[application-arguments]
+
+
+We have configured all of our PBS jobs and spark scripts to detect automatically the *master-url* (using the *master.log* file) and the total number of cores available (using *worker.log*), you dont have to type them yourself in the *bin/spark-submit*.  
+
+1) Submitting Spark-Pi to Spark-Cluster from the login node: 
+
+1.1) Via a PBS-job, which acts as the driver:
+
+	qsub spark-driver-PI.job
+
+1.2 ) Via an interactive session - Important ( you need to request a session with at least 8GB of memory):
+	
+	qlogin -l h_vmem=8G
+	./spark-interactive-Pi.sh
 		 
- 	Note: Addtional information can be found at this [link](https://spark.apache.org/docs/latest/submitting-applications.html)
+ Note: Addtional information can be found at this [link](https://spark.apache.org/docs/latest/submitting-applications.html)
 
 2) Submitting a TextMining query to the Spark-Cluster. This will requiere the following steps:
 	2.1 ) Clone our TextMinging repository
