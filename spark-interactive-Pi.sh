@@ -14,4 +14,4 @@ NUM=$(wc -l bash_scripts/worker.log)
 NUMWORKERS=$(echo $NUM| cut -d' ' -f1)
 NUMCORES=$( expr 16 '*' "$NUMWORKERS")
 
-$SPARK_HOME/bin/spark-submit --class org.apache.spark.examples.SparkPi  --master spark://$hostmaster:7077 --executor-memory 20G   --total-executor-cores $NUMCORES  $SPARK_HOME/examples/jars/spark-examples_2.11-2.4.0.jar 1000 > output_interactive_Pi.txt
+$SPARK_HOME/bin/spark-submit --class org.apache.spark.examples.SparkPi  --master spark://$hostmaster:7077 --executor-memory 20G   --total-executor-cores $NUMCORES  $SPARK_HOME/examples/jars/spark-examples_2.11-2.4.0.jar 1000 > output.txt
