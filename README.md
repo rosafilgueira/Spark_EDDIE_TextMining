@@ -43,6 +43,8 @@ This repository has two options (via two different PBS jobs) to provision on-dem
 
 The first PBS job (**Option 1**) sets up the Spark cluster (master and workers) and the driver to submit a specific Spark application/query. Then it continues running for one hour, so more Spark applications can be submitted later. While the second PBS job (**Option 2**), just sets up the Spark cluster (master and workers) and it doesnt submit any queries - we dont have a driver in this case. 
 
+For more information about Spark, you could check the following [Prace course](https://github.com/EPCCed/prace-spark-for-data-scientists/tree/master/presentations).
+
 ## Spark Cluster and Driver (Option 1) 
 
 The following PBS job starts a Spark master, Spark workers, and a driver. The driver submits automatically a Spark application/query to the Spark cluster once is running.
@@ -97,8 +99,6 @@ We can launch Spark applications using the *bin/spark-submit* script. This scrip
   	[application-arguments]
 
 
-
-For more information about Spark, you could check the following [Prace course](https://github.com/EPCCed/prace-spark-for-data-scientists/tree/master/presentations). 
 
 We have configured all of our PBS jobs and Spark scripts to detect automatically the *master-url* (using the *master.log* file) and the total number of cores available (using *worker.log*), you dont have to type them yourself in the *bin/spark-submit*.   
 
