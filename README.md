@@ -126,7 +126,7 @@ Note: Addtional information can be found at this [link](https://spark.apache.org
 
 ### Launching a Spark Text Mining Query
 
-[Defoe](https://github.com/alan-turing-institute/defoe)repository contains code to analyse historical books and newspapers datasets using Apache Spark. Thefore, the first step is to clone it into your $HOME
+[Defoe](https://github.com/alan-turing-institute/defoe) repository contains code to analyse historical books and newspapers datasets using Apache Spark. Thefore, the first step is to clone it into your $HOME
 
 	git clone https://github.com/alan-turing-institute/defoe.git
 
@@ -143,7 +143,15 @@ And later, you will to indicate which data (newspapers) you want to use for runn
 Thefore, your defoe code in EDDIE, before submitting/running any query should look like 
 
 ![this](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/defoe_code_2.png)
-After these two steps, you are now ready to launch a text-minining query to the Spark cluster. We have many text mining queries inside defoe, but here we have used [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md) and [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md). We have prepared two scripts for doing that, and it will be very easy to modify these scripts to run another query. As we explained before, you can run a Spark query using two options:
+
+Besides, you will need to install **once** the [NLTK library](https://www.nltk.org/):
+	 	
+		module load python/2.7.10
+       		pip install -U nltk
+		python -m nltk.downloader all
+	
+
+After these three steps, you are now ready to launch a text-minining query to the Spark cluster. We have many text mining queries inside defoe, but here we have used [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md) and [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md). We have prepared two scripts for doing that, and it will be very easy to modify these scripts to run another query. As we explained before, you can run a Spark query using two options:
 
   - Via a PBS-job, which acts as the dirver. This PBS job lanunches the **keyword_by_year**  query, using the specified  newspapers inside the *data.txt*:
 		
