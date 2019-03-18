@@ -143,8 +143,7 @@ And later, you will to indicate which data (newspapers) you want to use for runn
 Thefore, your defoe code in EDDIE, before submitting/running any query should look like 
 
 ![this](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/defoe_code_2.png)
-
-Besides, you will need to install **once** the [NLTK library](https://www.nltk.org/):
+Besides, you will need to install **once** the [NLTK library](https://www.nltk.org/), and download all the corpora:
 	 	
 		module load python/2.7.10
 		pip install nltk
