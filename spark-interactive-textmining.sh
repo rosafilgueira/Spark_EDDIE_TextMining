@@ -4,7 +4,7 @@ set -x
 #qlogin -l h_vmem=8G
 
 
-export _JAVA_OPTIONS='-Xmx128M -Xmx1G'
+export _JAVA_OPTIONS='-Xmx128M -Xmx4G'
 module load java
 module load python/2.7.10 
 
