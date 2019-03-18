@@ -113,7 +113,7 @@ Via an interactive session - Important ( you need to request a session with at l
 	
 Both, *spark-driver-Pi.job* and *spark-interactive-Pi.sh*, scripts upload the necessaries modules and JAVA configuration automatically:
 
-	export _JAVA_OPTIONS='-Xmx128M -Xmx1G'
+	export _JAVA_OPTIONS='-Xmx128M -Xmx4G'
 	module load java
 	module load python/2.7.10 
 		 
@@ -155,7 +155,7 @@ After these two steps, you are now ready to launch a text-minining query to the 
 			
 Note: Both, *spark-driver-textmining.job* and *spark-interactive-textmining* scripts, upload the necessaries modules and JAVA configuration automatically:
 
-	export _JAVA_OPTIONS='-Xmx128M -Xmx1G'
+	export _JAVA_OPTIONS='-Xmx128M -Xmx4G'
 	module load java
 	module load python/2.7.10 
 		
