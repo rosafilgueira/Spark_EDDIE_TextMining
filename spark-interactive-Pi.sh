@@ -5,7 +5,7 @@ set -x
 
 export _JAVA_OPTIONS='-Xmx128M -Xmx1G'
 module load java
-export SPARK_HOME=/home/rfilguei/spark-2.4.0-bin-hadoop2.7
+export SPARK_HOME=${HOME}/spark-2.4.0-bin-hadoop2.7
 
 hostmaster=$(cat "bash_scripts/master.log")
 echo "Master Node" $hostmaster
