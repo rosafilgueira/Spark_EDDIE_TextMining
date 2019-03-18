@@ -168,7 +168,7 @@ Note: Both, *spark-driver-textmining.job* and *spark-interactive-textmining* scr
 The results of any of these queries are stored in the *results.yml* 
 
 ![file](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/defoe_code_results.png)
-![file](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/example_results_totalwords.png)
+![file](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/example_results_totalwords.png | width=80)
 
 And you can follow the execution of an Spark query by checking the redirected file *query_job.txt*, where the outputs of the Spark query are stored in runtime. 
 
