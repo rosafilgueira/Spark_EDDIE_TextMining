@@ -64,7 +64,7 @@ Once this PBS has been accepted and you have the resoureces available, you can l
 
 ## Generic comments for both options
 
-You can modify both PBS-jobs as you wish for running the cluster for more time (now they are configured to 1 hour) and for reserving more or less nodes for your spark cluster. In the current scipts, we have used 3 nodes. One node for running the master, and:
+You can modify both PBS-jobs as you wish for running the cluster for more time (now they are configured to 1 hour) and for reserving more or less nodes for your spark cluster. In the current scripts, we have used 3 nodes. One node for running the master, and:
 
 - in the case of the *sparkcluster_and_driver* job: one node for running the worker and one node for running the driver (, which submits inmidiately the Spark PI application to the Spark Master).
 
