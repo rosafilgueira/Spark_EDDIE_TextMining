@@ -71,11 +71,11 @@ You can modify both PBS-jobs as you wish for running the cluster for more time (
 
 ## Spark Master, Workers and Driver nodes
 
-Once you have running your Spark cluster (your PBS job has been accepted and you have the resoureces available), you can check which nodes have been asigned as master, worker(s) and Driver using the *master.log*, *worker.log*, and *driver.log* stored under the *bash_scripts* directory. 
+Once you have running your Spark cluster (your PBS job has been accepted and you have the resoureces available), you can check which nodes have been asigned as master, worker(s) and driver using the information stored in *master.log*, *worker.log*, and *driver.log* files (under *bash_scripts* directory). 
 
-Remember that if you used *sparkcluster.job* for setting up your cluster, you wont have a driver, therefore the *driver.log* wont exit. 
+Remember that if you used *sparkcluster.job*, you wont have a driver, therefore the *driver.log* wont exit. 
 
-Furthermore, you can also check the master and worker(s) log files created (by default) inside $HOME/spark-2.4.0-bin-hadoop2.7/logs to see if everything have been started correctly. 
+Furthermore, you can also check the master and worker(s) log files created (by default) inside *$HOME/spark-2.4.0-bin-hadoop2.7/logs* directory to see if everything have been started correctly. 
 
 	ls spark-2.4.0-bin-hadoop2.7/logs/
 		spark-rfilguei-org.apache.spark.deploy.master.Master-1-node1b31.ecdf.ed.ac.uk.out
