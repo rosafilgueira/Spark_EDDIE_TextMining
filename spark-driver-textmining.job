@@ -10,7 +10,7 @@
 # Load Python
 module load python/2.7.10 
 module load java
-export _JAVA_OPTIONS='-Xmx128M -Xmx1G'
+export _JAVA_OPTIONS='-Xmx128M -Xmx4G'
 
 hostmaster=$(cat "bash_scripts/master.log")
 echo "Master Node" $hostmaster
