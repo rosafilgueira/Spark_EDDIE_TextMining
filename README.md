@@ -33,7 +33,7 @@ IDEA:
 	
 **Important**: A couple of changes are needed in the *spark-default.conf* file (which is stored inside *spark_conf* directory) in order to have Spark successfully installed into your EDDIE account:
 -  Create first a tmp directory ( e.g. /exports/eddie/scratch/< UUN >/tmp) to store temporal spark files. Modify later the *spark.local.dir* variable to point out this path.
--  Create first events directory (.e.g /home/eddie/scratch/< UUN >/events) to store the Spark events. Modify later the *spark.eventLog.dir* variabke to point this path. 
+-  Create first events directory (.e.g /home/eddie/scratch/< UUN >/events) to store the Spark events. Modify later the *spark.eventLog.dir* variable to point this path. 
 
  You might also want to configure another parameters inside *spark-defaults.conf* file (e.g. driver memory size, or the location of the log directory).  
   
