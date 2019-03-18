@@ -39,7 +39,9 @@ IDEA:
   
 # Start a Spark cluster within a PBS job
 
-This repository has two options (via two different PBS jobs) to provision on-demand and for a specific period of time (e.g. 1 hour) the following Spark Standalone Cluster ![SparkCluster Architecture](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkCluster_Architecture.png). 
+This repository has two options (via two different PBS jobs) to provision on-demand and for a specific period of time (e.g. 1 hour) the following Spark Standalone Cluster ![SparkCluster Architecture](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkCluster_Architecture.png).
+
+Spark applications/queries are run as independent sets of processes, coordinated by a SparkContext in a driver program. The Spark applications/queries have been set up to be run in *cluster mode*. This means, that the application code is sent from the *driver* to the *executors*, and the executors specifiy the *context* and the various *tasks* to be run.
 
 The first PBS job (**Option 1**) sets up the Spark cluster (master and workers) and the driver to submit a specific Spark application/query. Then it continues running for one hour, so more Spark applications can be submitted later. While the second PBS job (**Option 2**), just sets up the Spark cluster (master and workers) and it doesnt submit any queries - we dont have a driver in this case. 
 
