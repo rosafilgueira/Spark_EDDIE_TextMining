@@ -156,7 +156,6 @@ All the required information for submitting *Defoe text mining queries* can be f
 Spark offers different UIs to monitor the Spark master, workers and driver (running an Spark application/query). The only thing is needed is to create the proper ssh bridges. For doing that, you will need to check the URLS of the master ( e.g. opening *master.log* ), workers (e.g. opening *worker.log*), and driver (e.g. opening *driver.log* or checking with *qstat* in which node is running your spark-driver-textmining.job). 
 
 Once you have these URLs of these three nodes, you just need to do the following
-
 - Spark cluster UI 
 	– New terminal console: ssh UUN@eddie3.ecdf.ed.ac.uk -L8080:MASTER-URL:8080 
 	- Web browser window: localhost://8080
