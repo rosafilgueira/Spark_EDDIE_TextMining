@@ -7,7 +7,7 @@ echo "Master Node" $hostmaster
 export SPARK_HOME=/home/rfilguei/spark-2.4.0-bin-hadoop2.7
 
 #Getting the Number of cores ( NUM WORKERS * 16 ) to use for running the Spark Pi application
-NUM=$(wc -l bash_scripts/worker.log)
+NUM=$(wc -l $HOME/bash_scripts/worker.log)
 NUMWORKERS=$(echo $NUM| cut -d' ' -f1)
 NUMCORES=$( expr 16 '*' "$NUMWORKERS")
 
