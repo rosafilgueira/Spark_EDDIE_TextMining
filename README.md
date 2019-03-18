@@ -109,7 +109,15 @@ Via an interactive session - Important ( you need to request a session with at l
 	
 	qlogin -l h_vmem=8G
 	./spark-interactive-Pi.sh
+	
+The *spark-interactive-Pi.sh* script also upload the necessaries modules and JAVA configuration automatically:
+
+	export _JAVA_OPTIONS='-Xmx128M -Xmx1G'
+	module load java
+	module load python/2.7.10 
 		 
+The result of the Spark-Pi application is store in the redirected ![output.txt file](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/OuputPi.png)
+
 
 Note: Addtional information can be found at this [link](https://spark.apache.org/docs/latest/submitting-applications.html)
 
@@ -142,6 +150,12 @@ After these two steps, you are now ready to launch a text-minining query to the 
 		
 			qlogin -l h_vmem=8G
 			./spark-interactive-textmining.sh
+			
+Note: The *spark-interactive-textmining* script also upload the necessaries modules and JAVA configuration automatically:
+
+	export _JAVA_OPTIONS='-Xmx128M -Xmx1G'
+	module load java
+	module load python/2.7.10 
 		
 The results of any of these queries are stored in the *results.yml* 
 
