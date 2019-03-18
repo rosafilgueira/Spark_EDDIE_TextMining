@@ -1,5 +1,5 @@
 # Spark on EDDIE
-This repository describes all the steps necesaries to create a **multinode Spark standalone cluster** (version 2.4.0) within a PBS-job. It has been tested using the [EDDIE HPC cluster](https://www.ed.ac.uk/information-services/research-support/research-computing/ecdf/high-performance-computing), hosted at Universtiy of Edinburgh. This repository also presents several Spark Applications to be launched using the Spark cluster.
+This repository describes all the steps necesaries to create a **multinode Spark standalone cluster** (version 2.4.0) within a PBS-job. It has been tested using the [EDDIE HPC cluster](https://www.ed.ac.uk/information-services/research-support/research-computing/ecdf/high-performance-computing), hosted at Universtiy of Edinburgh. This repository also presents several Spark applications to be launched using the Spark cluster.
 
 # Installation Steps
 
