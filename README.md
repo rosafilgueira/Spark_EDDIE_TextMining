@@ -98,8 +98,6 @@ We can launch Spark applications using the *bin/spark-submit* script. This scrip
   	<application-jar> \
   	[application-arguments]
 
-
-
 We have configured all of our PBS jobs and Spark scripts to detect automatically the *master-url* (using the *master.log* file) and the total number of cores available (using *worker.log*), you dont have to type them yourself in the *bin/spark-submit*.   
 
 ### Launching the *Spark-Pi* Application
@@ -170,6 +168,7 @@ Note: Both, *spark-driver-textmining.job* and *spark-interactive-textmining* scr
 The results of any of these queries are stored in the *results.yml* 
 
 ![file](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/defoe_code_results.png)
+![file](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/example_results_totalwords.png)
 
 And you can follow the execution of an Spark query by checking the redirected file *query_job.txt*, where the outputs of the Spark query are stored in runtime. 
 
