@@ -116,7 +116,7 @@ The *spark-interactive-Pi.sh* script also upload the necessaries modules and JAV
 	module load java
 	module load python/2.7.10 
 		 
-The result of the Spark-Pi application is store in the redirected ![output.txt file](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/OuputPi.png)
+The result of the Spark-Pi application is store in the redirected *output.txt file* ![file](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/OuputPi.png)
 
 
 Note: Addtional information can be found at this [link](https://spark.apache.org/docs/latest/submitting-applications.html)
