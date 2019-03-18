@@ -147,7 +147,7 @@ Thefore, your defoe code in EDDIE, before submitting/running any query should lo
 Besides, you will need to install **once** the [NLTK library](https://www.nltk.org/):
 	 	
 		module load python/2.7.10
-       		pip install -U nltk
+		pip install nltk
 		python -m nltk.downloader all
 	
 
