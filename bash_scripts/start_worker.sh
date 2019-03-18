@@ -3,6 +3,7 @@ hostmaster=$1
 hostdriver=$2
 export SPARK_HOME=/home/rfilguei/spark-2.4.0-bin-hadoop2.7
 export HOSTNAME=`hostname`
+module load python/2.7.10 
 
 if [ $HOSTNAME != $hostmaster ] && [ $HOSTNAME != $hostdriver ]
 then
