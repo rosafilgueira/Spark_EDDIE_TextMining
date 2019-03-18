@@ -8,10 +8,10 @@ export _JAVA_OPTIONS='-Xmx128M -Xmx4G'
 module load java
 module load python/2.7.10 
 
-hostmaster=$(cat "bash_scripts/master.log")
+hostmaster=$(cat "$HOME/bash_scripts/master.log")
 echo "Master Node" $hostmaster
 
-NUM=$(wc -l bash_scripts/worker.log)
+NUM=$(wc -l $HOME/bash_scripts/worker.log)
 NUMWORKERS=$(echo $NUM| cut -d' ' -f1)
 NUMCORES=$( expr 16 '*' "$NUMWORKERS")
 
