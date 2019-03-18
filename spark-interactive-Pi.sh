@@ -10,7 +10,7 @@ export SPARK_HOME=${HOME}/spark-2.4.0-bin-hadoop2.7
 hostmaster=$(cat "bash_scripts/master.log")
 echo "Master Node" $hostmaster
 
-NUM=$(wc -l bash_scripts/worker.log)
+NUM=$(wc -l $HOME/bash_scripts/worker.log)
 NUMWORKERS=$(echo $NUM| cut -d' ' -f1)
 NUMCORES=$( expr 16 '*' "$NUMWORKERS")
 
