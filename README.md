@@ -97,6 +97,9 @@ We can launch Spark applications using the *bin/spark-submit* script. This scrip
   	[application-arguments]
 
 
+
+For more information about Spark, you could check the following [Prace course](https://github.com/EPCCed/prace-spark-for-data-scientists/tree/master/presentations). 
+
 We have configured all of our PBS jobs and Spark scripts to detect automatically the *master-url* (using the *master.log* file) and the total number of cores available (using *worker.log*), you dont have to type them yourself in the *bin/spark-submit*.   
 
 ### Launching the *Spark-Pi* Application
