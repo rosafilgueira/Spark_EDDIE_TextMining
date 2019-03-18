@@ -171,6 +171,8 @@ The results of any of these queries are stored in the *results.yml*
 
 ![file](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/defoe_code_results.png)
 
+And you can follow the execution of an Spark query by checking the redirected file *query_job.txt*, where the outputs of the Spark query are stored in runtime. 
+
 If you want to run a different text mining query, you just need to modify any of the previous scripts, indicating the path of the query to use, and the argurments (if they are needed). 
 
 All the required information for submitting *Defoe text mining queries* can be found at this [link](https://github.com/alan-turing-institute/defoe/tree/master/docs). 			
