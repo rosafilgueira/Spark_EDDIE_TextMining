@@ -12,7 +12,7 @@
 # Load Python
 module load python/2.7.10 
 # Run the program
-export SPARK_HOME=${HOME}/spark-2.4.0-bin-hadoop2.7/spark-2.4.0-bin-hadoop2.7
+export SPARK_HOME=${HOME}/spark-2.4.0-bin-hadoop2.7
 cd $HOME/bash_scripts
 rm -f machines.log
 rm -f machines_uniq.log
