@@ -1,5 +1,5 @@
 # Spark on EDDIE
-This repository describes all the steps necesaries to create a **multinode Spark standalone cluster** (version 2.4.0) within a PBS-job. It has been tested using the [EDDIE HPC cluster](https://www.ed.ac.uk/information-services/research-support/research-computing/ecdf/high-performance-computing), hosted at Universtiy of Edinburgh. This repository also presents several Spark applications to be launched using the Spark cluster.
+This repository describes all the steps necesaries to create a **multinode Spark standalone cluster** (version 2.4.0) within a SGE-job. It has been tested using the [EDDIE HPC cluster](https://www.ed.ac.uk/information-services/research-support/research-computing/ecdf/high-performance-computing), hosted at Universtiy of Edinburgh. This repository also presents several Spark applications to be launched using the Spark cluster.
 
 # Installation Steps
 
@@ -14,8 +14,8 @@ In your $HOME you need to have the following:
 * spark-2.4.0-bin-hadoop2.7 
 * bash_scripts
 * spark_conf
-* PBS-jobs for provisioning the Spark cluster: sparkcluster_and_driver.job, sparkcluster.job
-* PBS-jobs for launching Spark applications/queries: spark-driver-Pi.job, spark-driver-textmining.job
+* SGE-jobs for provisioning the Spark cluster: sparkcluster_and_driver.job, sparkcluster.job
+* SGE-jobs for launching Spark applications/queries: spark-driver-Pi.job, spark-driver-textmining.job
 * Scripts for launching Spark applications: spark-interactive-textmining.sh, spark-interactive-Pi.sh, spark-Pi.sh, spark-textmining.sh
 * Script for stopping Spark cluster (usually no needed): spark_stop.sh
 
@@ -39,34 +39,34 @@ IDEA:
   
 # Start a Spark cluster within a PBS job
 
-This repository has two options (via two different PBS jobs) to provision on-demand and for a specific period of time (e.g. 1 hour) the following Spark Standalone Cluster ![SparkCluster Architecture](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkCluster_Architecture.png).
+This repository has two options (via two different SGE jobs) to provision on-demand and for a specific period of time (e.g. 1 hour) the following Spark Standalone Cluster ![SparkCluster Architecture](https://github.com/rosafilgueira/Spark_EDDIE_TextMining/blob/master/Figures/SparkCluster_Architecture.png).
 
 Spark applications/queries are run as independent sets of processes, coordinated by a SparkContext in a driver program. The Spark applications/queries have been set up to be run in *cluster mode*. This means, that the application code is sent from the *driver* to the *executors*, and the executors specifiy the *context* and the various *tasks* to be run.
 
-The first PBS job (**Option 1**) sets up the Spark cluster (master and workers) and the driver to submit a specific Spark application/query. Then it continues running for one hour, so more Spark applications can be submitted later. While the second PBS job (**Option 2**), just sets up the Spark cluster (master and workers) and it doesnt submit any queries - we dont have a driver in this case. 
+The first SGE job (**Option 1**) sets up the Spark cluster (master and workers) and the driver to submit a specific Spark application/query. Then it continues running for one hour, so more Spark applications can be submitted later. While the second SGE job (**Option 2**), just sets up the Spark cluster (master and workers) and it doesnt submit any queries - we dont have a driver in this case. 
 
 For more information about Spark, you could check the following [Prace course](https://github.com/EPCCed/prace-spark-for-data-scientists/tree/master/presentations).
 
 ## Spark Cluster and Driver (Option 1) 
 
-The following PBS job starts a Spark master, Spark workers, and a driver. The driver submits automatically a Spark application/query to the Spark cluster once is running.
+The following SGE job starts a Spark master, Spark workers, and a driver. The driver submits automatically a Spark application/query to the Spark cluster once is running.
 
   		qsub sparkcluster_and_driver.job
 
-Note: This PBS job configures a node to run as the driver, which launches ( *spark-Pi.sh* script) a simple Spark application (calculation of Pi). The *Spark Pi* application comes within the Spark source code . If you want to change the PBS job to launch an Spark text mining query (e.g. *spark-textmining.sh*) or another Spark application, you just need to modify/replace this script. 
+Note: This SGE job configures a node to run as the driver, which launches ( *spark-Pi.sh* script) a simple Spark application (calculation of Pi). The *Spark Pi* application comes within the Spark source code . If you want to change the PBS job to launch an Spark text mining query (e.g. *spark-textmining.sh*) or another Spark application, you just need to modify/replace this script. 
 
 ## Spark Cluster only (Option 2)
 
-The following PBS job starts a Spark master and workers. 
+The following SGE job starts a Spark master and workers. 
 
                 qsub sparkcluster.job
 		
-Once this PBS has been accepted and you have the resoureces available, you can launch Spark applications/queries to the Spark cluster. And you can do this either with  another PBS-job (e.g. *spark-driver-textmining.job*, *spark-driver-Pi.job*) ; or with an interactive session ( e.g. *spark-interactive-textmining.sh*, *spark-interactive-Pi.sh*) 		
+Once this SGE has been accepted and you have the resoureces available, you can launch Spark applications/queries to the Spark cluster. And you can do this either with  another SGE-job (e.g. *spark-driver-textmining.job*, *spark-driver-Pi.job*) ; or with an interactive session ( e.g. *spark-interactive-textmining.sh*, *spark-interactive-Pi.sh*) 		
 
 
 ## Generic comments for both options
 
-You can modify both PBS-jobs as you wish for running the cluster for more time (now they are configured to 1 hour) and for reserving more or less nodes for your spark cluster. In the current scripts, we have used 3 nodes. One node for running the master, and:
+You can modify both SGE-jobs as you wish for running the cluster for more time (now they are configured to 1 hour) and for reserving more or less nodes for your spark cluster. In the current scripts, we have used 3 nodes. One node for running the master, and:
 
 - in the case of the *sparkcluster_and_driver* job: one node for running the worker and one node for running the driver (, which submits inmidiately the Spark PI application to the Spark Master).
 
@@ -75,7 +75,7 @@ You can modify both PBS-jobs as you wish for running the cluster for more time (
 
 ## Spark Master, Workers and Driver nodes
 
-Once you have running your Spark cluster (your PBS job has been accepted and you have the resoureces available), you can check which nodes have been asigned as master, worker(s) and driver using the information stored in *master.log*, *worker.log*, and *driver.log* files (under *bash_scripts* directory). 
+Once you have running your Spark cluster (your SGE job has been accepted and you have the resoureces available), you can check which nodes have been asigned as master, worker(s) and driver using the information stored in *master.log*, *worker.log*, and *driver.log* files (under *bash_scripts* directory). 
 
 Remember that if you used *sparkcluster.job*, you wont have a driver, therefore the *driver.log* wont exit. 
 
@@ -104,7 +104,7 @@ We have configured all of our PBS jobs and Spark scripts to detect automatically
 
 ### Launching the *Spark-Pi* Application
 
-Via a PBS-job, which acts as the driver:
+Via a SGE-job, which acts as the driver:
 
 	qsub spark-driver-Pi.job
 
@@ -147,7 +147,7 @@ Thefore, your defoe code in EDDIE, before submitting/running any query should lo
 After these two steps, you are now ready to launch a text-minining query to the Spark cluster. We have many text mining queries inside defoe, but here we have used [keyword_by_year](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/keyword_by_year.md) and [total_words](https://github.com/alan-turing-institute/defoe/blob/master/docs/papers/total_words.md). We have prepared two scripts for doing that, and it will be very easy to modify these scripts to run another query. 
 
 As we explained before, you can run a Spark query using two options:
-  - Via a PBS-job, which acts as the dirver. This PBS job lanunches the **keyword_by_year**  query, using the specified  newspapers inside the *data.txt*:
+  - Via a SGE-job, which acts as the dirver. This SGE job lanunches the **keyword_by_year**  query, using the specified  newspapers inside the *data.txt*:
 		
 		qsub spark-driver-textmining.job 
 		
